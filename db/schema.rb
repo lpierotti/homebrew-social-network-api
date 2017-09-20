@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20170920154756) do
     t.float "fg"
     t.float "abv"
     t.string "image"
+    t.string "type"
+    t.string "style"
   end
 
   create_table "user_recipes", force: :cascade do |t|

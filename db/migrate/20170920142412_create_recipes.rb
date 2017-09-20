@@ -8,6 +8,8 @@ class CreateRecipes < ActiveRecord::Migration[5.1]
     	t.float :fg
     	t.float :abv
     	t.string :image
+        t.string :type
+        t.string :style
     end
   end
 end
