@@ -5,16 +5,21 @@ class ApplicationController < ActionController::API
 	end
 
 	def decoded_token(token)
-		begin 
-			JWT.decode(token, 'beerwinemead')
+
+		begin
+			JWT.decode(token, "beerwinemead")
 		rescue
-			''
+			[]
 		end
 	end
 
 	def token
-		bearer_token = request.headers["Authorization"]
-		jwt_token = bearer_token.split(".")[1]
+
+		if bearer_token
+			bearer_token = request.headers["Authorization"]
+			jwt_token = bearer_token.split(" ")[1]
+		else
+		end
 	end
 
 	def current_user
@@ -29,4 +34,5 @@ class ApplicationController < ActionController::API
 	def logged_in?
 		!!current_user
 	end
+
 end
