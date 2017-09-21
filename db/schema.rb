@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20170920154756) do
     t.float "fg"
     t.float "abv"
     t.string "image"
-    t.string "type"
+    t.string "type_of_brew"
     t.string "style"
   end
 
