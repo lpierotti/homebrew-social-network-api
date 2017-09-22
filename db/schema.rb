@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20170920154756) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
-    t.string "image"
+    t.text "image"
   end
 
 end

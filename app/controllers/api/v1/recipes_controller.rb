@@ -11,6 +11,16 @@ class Api::V1::RecipesController < ApplicationController
 
 	def index
 		recipes = Recipe.all
-		render json: {recipes: recipes}
+		recipes_with_ingredients = recipes.map do |recipe| 
+			new_recipe = Hash.new
+			new_recipe = recipe.attributes
+			new_recipe[:ingredients] = recipe.ingredients.map.with_index do |ingredient, index|
+				ingredient_info = RecipeIngredient.select{|recipe_ingredient| recipe_ingredient.recipe == recipe}
+				ingredient = {name: ingredient.name, amount: ingredient_info[index].amount, unit: ingredient_info[index].unit}
+			end
+			new_recipe
+		end
+		byebug
+		render json: {recipes: recipes_with_ingredients}
 	end
 end

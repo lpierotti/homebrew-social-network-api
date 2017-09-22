@@ -13,4 +13,15 @@ class Api::V1::UsersController < ApplicationController
 		render json: {recipes: current_user.recipes}
 	end
 
+	def edit
+		current_user.image = imageParams[:base64]
+		byebug
+		current_user.save
+	end
+
+	private
+	def imageParams
+		params.require(:image).permit(:base64)	
+	end
+
 end

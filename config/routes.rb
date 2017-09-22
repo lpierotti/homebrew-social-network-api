@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   		post '/recipes', to: 'recipes#create'
   		get '/user/recipes', to: 'users#users_recipes'
   		get '/recipes', to: 'recipes#index'
+  		post '/user/edit', to: 'users#edit'
   	end
   end
 end
