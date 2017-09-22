@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   		post '/signup', to: 'users#create'
   		post '/login', to: 'auth#create'
   		post '/recipes', to: 'recipes#create'
+  		get '/user/recipes', to: 'users#users_recipes'
   	end
   end
 end
