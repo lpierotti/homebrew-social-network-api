@@ -8,4 +8,9 @@ class Api::V1::RecipesController < ApplicationController
 		end
 		UserRecipe.create(user_id: current_user.id, recipe_id: recipe.id)
 	end
+
+	def index
+		recipes = Recipe.all
+		render json: {recipes: recipes}
+	end
 end
