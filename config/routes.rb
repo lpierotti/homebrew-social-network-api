@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   		get '/user/recipes', to: 'users#users_recipes'
   		get '/recipes', to: 'recipes#index'
   		post '/user/edit', to: 'users#edit'
+  		get '/recipe/:id', to: 'recipes#show'
   	end
   end
 end

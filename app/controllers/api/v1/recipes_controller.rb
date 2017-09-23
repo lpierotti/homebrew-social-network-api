@@ -20,7 +20,11 @@ class Api::V1::RecipesController < ApplicationController
 			end
 			new_recipe
 		end
-		byebug
 		render json: {recipes: recipes_with_ingredients}
+	end
+
+	def show
+		recipe = Recipe.find(params[:id])
+		render json: {recipe: recipe}
 	end
 end
