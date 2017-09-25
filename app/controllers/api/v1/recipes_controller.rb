@@ -14,6 +14,8 @@ class Api::V1::RecipesController < ApplicationController
 		recipes_with_ingredients = recipes.map do |recipe| 
 			new_recipe = Hash.new
 			new_recipe = recipe.attributes
+			user_recipe = UserRecipe.find_by(recipe_id: new_recipe[:id])
+			new_recipe[:author] = User.find_by(id: user_recipe[:user_id])
 			new_recipe[:ingredients] = recipe.ingredients.map.with_index do |ingredient, index|
 				ingredient_info = RecipeIngredient.select{|recipe_ingredient| recipe_ingredient.recipe == recipe}
 				ingredient = {name: ingredient.name, amount: ingredient_info[index].amount, unit: ingredient_info[index].unit}
@@ -25,6 +27,10 @@ class Api::V1::RecipesController < ApplicationController
 
 	def show
 		recipe = Recipe.find(params[:id])
-		render json: {recipe: recipe}
+		new_recipe = Hash.new
+		new_recipe = recipe.attributes
+		user_recipe = UserRecipe.find_by(recipe_id: params[:id])
+		new_recipe[:author] = User.find_by(id: user_recipe[:user_id])
+		render json: {recipe: new_recipe}
 	end
 end
