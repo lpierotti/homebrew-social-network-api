@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   		post '/user/edit', to: 'users#edit'
   		get '/recipe/:id', to: 'recipes#show'
   		post 'user_recipes', to: 'user_recipes#create'
-  		post '/user/follows', to: 'user#follows'
+  		post '/follows', to: 'follows#index'
+  		post '/follow/new', to: 'follows#create'
   	end
   end
 end
