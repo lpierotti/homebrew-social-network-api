@@ -1,7 +1,7 @@
 class Api::V1::RecipesController < ApplicationController
 
 	def create
-		recipe = Recipe.create(name: params[:name], style: params[:style], type_of_brew: params[:type], description: params[:description], instructions: params[:instructions], og: params[:abvCalc][:og], fg: params[:abvCalc][:fg], abv: params[:abvCalc][:abv], image: '')
+		recipe = Recipe.create(name: params[:name], style: params[:style], type_of_brew: params[:type], description: params[:description], instructions: params[:instructions], og: params[:abvCalc][:og], fg: params[:abvCalc][:fg], abv: params[:abvCalc][:abv], image: params[:image])
 		ingredients = params[:ingredientObjects].each do |ingredient|
 			newIngredient = Ingredient.find_or_create_by(name: ingredient[:name])
 			RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: newIngredient.id, amount: ingredient[:amount], unit: ingredient[:unit])
