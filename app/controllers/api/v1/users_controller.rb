@@ -10,7 +10,8 @@ class Api::V1::UsersController < ApplicationController
 	end
 
 	def users_recipes
-		render json: {recipes: current_user.recipes}
+		user = User.find_by(id: params[:id])
+		render json: {recipes: user.recipes}
 	end
 
 	def edit

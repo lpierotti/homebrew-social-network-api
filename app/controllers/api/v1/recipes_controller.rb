@@ -6,7 +6,11 @@ class Api::V1::RecipesController < ApplicationController
 			newIngredient = Ingredient.find_or_create_by(name: ingredient[:name])
 			RecipeIngredient.create(recipe_id: recipe.id, ingredient_id: newIngredient.id, amount: ingredient[:amount], unit: ingredient[:unit])
 		end
-		UserRecipe.create(user_id: current_user.id, recipe_id: recipe.id)
+		user_recipe = UserRecipe.create(user_id: current_user.id, recipe_id: recipe.id)
+		new_recipe = Hash.new
+		new_recipe = recipe.attributes
+		new_recipe[:author] = User.find_by(id: user_recipe[:user_id])
+		render json: {recipe: new_recipe}
 	end
 
 	def index
@@ -14,7 +18,7 @@ class Api::V1::RecipesController < ApplicationController
 		recipes_with_ingredients = recipes.map do |recipe| 
 			new_recipe = Hash.new
 			new_recipe = recipe.attributes
-			user_recipe = UserRecipe.find_by(recipe_id: new_recipe[:id])
+			user_recipe = UserRecipe.find_by(recipe_id: new_recipe['id'])
 			new_recipe[:author] = User.find_by(id: user_recipe[:user_id])
 			new_recipe[:ingredients] = recipe.ingredients.map.with_index do |ingredient, index|
 				ingredient_info = RecipeIngredient.select{|recipe_ingredient| recipe_ingredient.recipe == recipe}
