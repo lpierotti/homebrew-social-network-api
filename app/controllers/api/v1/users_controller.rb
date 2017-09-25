@@ -16,8 +16,9 @@ class Api::V1::UsersController < ApplicationController
 
 	def edit
 		byebug
-		current_user.image = params[:url]
-		current_user.save
+		user = current_user
+		user.image = imageParams[:url]
+		user.save
 		byebug
 		render json: {image: current_user.image}
 	end
