@@ -15,7 +15,8 @@ class Api::V1::UsersController < ApplicationController
 	end
 
 	def edit
-		current_user.image = imageParams[:base64]
+		byebug
+		current_user.image = params[:url]
 		current_user.save
 		byebug
 		render json: {image: current_user.image}
@@ -23,7 +24,7 @@ class Api::V1::UsersController < ApplicationController
 
 	private
 	def imageParams
-		params.require(:user).permit(:base64)	
+		params.require(:user).permit(:url)	
 	end
 
 end
