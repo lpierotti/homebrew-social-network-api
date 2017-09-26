@@ -18,7 +18,6 @@ class Api::V1::FollowsController < ApplicationController
 		followees = followees.map do |followee|
 			User.find_by(id: followee)
 		end
-		byebug
 		render json: {followers: followers, followees: followees}
 	end
 

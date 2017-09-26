@@ -26,6 +26,11 @@ class Api::V1::UsersController < ApplicationController
 		render json: {viewing_user: user}
 	end	
 
+	def current
+		user = current_user
+		render json: {user: user}
+	end
+
 	private
 	def imageParams
 		params.require(:user).permit(:url)	
