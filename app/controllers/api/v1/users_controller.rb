@@ -15,13 +15,16 @@ class Api::V1::UsersController < ApplicationController
 	end
 
 	def edit
-		byebug
 		user = current_user
 		user.image = imageParams[:url]
 		user.save
-		byebug
 		render json: {image: current_user.image}
 	end
+
+	def show
+		user = User.find_by(id: params[:id])
+		render json: {viewing_user: user}
+	end	
 
 	private
 	def imageParams
