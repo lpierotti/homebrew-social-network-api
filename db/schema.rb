@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170926175654) do
+ActiveRecord::Schema.define(version: 20170926214414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,9 @@ ActiveRecord::Schema.define(version: 20170926175654) do
   create_table "follows", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followee_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -48,6 +51,9 @@ ActiveRecord::Schema.define(version: 20170926175654) do
     t.integer "rating"
     t.integer "recipe_id"
     t.integer "user_id"
+  end
+
+  create_table "user_groups", force: :cascade do |t|
   end
 
   create_table "user_recipes", force: :cascade do |t|
