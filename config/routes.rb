@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   		get '/user/:id', to: 'users#show'
   		post '/review/new', to: 'reviews#create'
   		get '/users', to: 'users#index'
+  		post '/groups', to: 'groups#create'
   	end
   end
 end
