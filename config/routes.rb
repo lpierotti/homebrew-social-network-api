@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   		get '/user/current', to: 'users#current'
   		get '/user/:id', to: 'users#show'
   		post '/review/new', to: 'reviews#create'
-
+  		get '/users', to: 'users#index'
   	end
   end
 end

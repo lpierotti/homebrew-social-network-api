@@ -1,9 +1,8 @@
 class Api::V1::FollowsController < ApplicationController
 
 	def create
-		byebug
 		user = current_user
-		follow = Follow.create(follower_id: user.id, followee_id: params[:id])
+		follow = Follow.find_or_create_by(follower_id: user.id, followee_id: params[:id])
 		followee = User.find_by(id: params[:id])
 		render json: {followee: follow}
 	end
