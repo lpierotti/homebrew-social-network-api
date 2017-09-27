@@ -7,6 +7,9 @@ class Api::V1::GroupsController < ApplicationController
 			UserGroup.create(user_id: user.id, group_id: group.id)
 			user
 		end
+		user = current_user
+		UserGroup.find_or_create_by(user_id: user.id, group_id: group.id)
+		members << user
 		display_group = group.attributes
 		display_group[:members] = members
 		render json: {group: display_group}
