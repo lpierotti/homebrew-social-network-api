@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   		post '/review/new', to: 'reviews#create'
   		get '/users', to: 'users#index'
   		post '/groups', to: 'groups#create'
+  		get '/group/:id', to: 'groups#show'
   	end
   end
 end
