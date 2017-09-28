@@ -13,11 +13,13 @@ Rails.application.routes.draw do
   		post '/follows', to: 'follows#index'
   		post '/follow/new', to: 'follows#create'
   		get '/user/current', to: 'users#current'
+  		get '/user/groups', to: 'groups#users_groups'
   		get '/user/:id', to: 'users#show'
   		post '/review/new', to: 'reviews#create'
   		get '/users', to: 'users#index'
   		post '/groups', to: 'groups#create'
   		get '/group/:id', to: 'groups#show'
+
   	end
   end
 end

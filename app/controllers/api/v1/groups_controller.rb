@@ -22,4 +22,15 @@ class Api::V1::GroupsController < ApplicationController
 		render json: {group: new_group}
 	end
 
+	def users_groups
+		user = current_user
+		groups = user.groups
+		new_groups = groups.map do |group|
+			new_group = group.attributes
+			new_group[:members] = group.users
+			new_group
+		end
+		render json: {userGroups: new_groups}
+	end
+
 end
