@@ -20,6 +20,12 @@ Rails.application.routes.draw do
   		post '/groups', to: 'groups#create'
   		get '/group/:id', to: 'groups#show'
   		post '/breweries', to: 'breweries#index'
+  		resources :chatrooms do
+	        resource :chatroom_users, only: [:create, :destroy]
+	        resources :messages, only: [:create]
+	    end
   	end
   end
+
+  mount ActionCable.server => '/cable'
 end

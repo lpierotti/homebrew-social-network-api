@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170928150803) do
+ActiveRecord::Schema.define(version: 20170929131600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20170928150803) do
     t.float "lng"
   end
 
+  create_table "chatroom_users", force: :cascade do |t|
+    t.integer "chatroom_id"
+    t.integer "user_id"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "follows", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followee_id"
@@ -39,6 +48,12 @@ ActiveRecord::Schema.define(version: 20170928150803) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "user_id"
+    t.integer "chatroom_id"
   end
 
   create_table "recipe_ingredients", force: :cascade do |t|
