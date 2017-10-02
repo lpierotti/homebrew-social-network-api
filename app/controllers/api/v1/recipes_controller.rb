@@ -24,8 +24,12 @@ class Api::V1::RecipesController < ApplicationController
 				ingredient_info = RecipeIngredient.select{|recipe_ingredient| recipe_ingredient.recipe == recipe}
 				ingredient = {name: ingredient.name, amount: ingredient_info[index].amount, unit: ingredient_info[index].unit}
 			end
+			new_recipe[:reviews] = recipe.reviews.map do |review|
+				{author: review.user, text: review.text, rating: review.rating}
+			end
 			new_recipe
 		end
+
 		render json: {recipes: recipes_with_ingredients}
 	end
 
