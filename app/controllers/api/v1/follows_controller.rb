@@ -4,7 +4,8 @@ class Api::V1::FollowsController < ApplicationController
 		user = current_user
 		follow = Follow.find_or_create_by(follower_id: user.id, followee_id: params[:id])
 		followee = User.find_by(id: params[:id])
-		render json: {followee: follow}
+		follower = User.find_by(id: current_user.id)
+		render json: {followee: followee, follower: follower}
 	end
 
 	def index
