@@ -19,7 +19,19 @@ class Api::V1::GroupsController < ApplicationController
 		group = Group.find_by(id: params[:id])
 		new_group = group.attributes
 		new_group[:members] = group.users
-		new_group[:messages] = Chatroom.find_by(name: "Group#{group.id}").messages
+		new_group[:messages] = Chatroom.find_by(name: "Group#{group.id}").messages.map do |message| 
+			new_message = {}
+			if message[:user_id] == current_user.id 
+				new_message[:author] = 'me'
+			else 
+				new_message[:author] = 'them'
+			end
+			new_message[:type] = 'text'
+			new_message[:data] = {}
+			new_message[:data][:text] = message[:body]
+
+			new_message
+		end
 		render json: {group: new_group}
 	end
 
