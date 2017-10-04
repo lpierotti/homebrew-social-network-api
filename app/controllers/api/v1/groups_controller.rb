@@ -23,15 +23,12 @@ class Api::V1::GroupsController < ApplicationController
 			new_group[:messages] = Chatroom.find_by(name: "Group#{group.id}").messages.map do |message| 
 				new_message = {}
 				if message[:user_id] == current_user.id 
-					new_message[:author] = 'me'
+					new_message[:type] = 0
 				else 
-					new_message[:author] = 'them'
+					new_message[:type] = 1
 				end
-				new_message[:type] = 'text'
-				new_message[:data] = {}
-				byebug
-				new_message[:data][:text] = message[:data]
-
+				new_message[:image] = User.find_by(id: message[:user_id]).image || "http://res.cloudinary.com/dflt9qlwf/image/upload/v1506547359/pmmbf4o9ebr7z09l8oat.png"
+				new_message[:text] = message[:body]
 				new_message
 			end
 		end
