@@ -8,6 +8,7 @@ class Api::V1::AuthController < ApplicationController
 			token = issue_token(payload)
 			render json: {user: user, jwt: token}
 		else
+			render json: {error: "The email or pssword is incorrect!"}
 		end
 	end
 end
