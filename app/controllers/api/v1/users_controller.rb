@@ -6,6 +6,14 @@ class Api::V1::UsersController < ApplicationController
 			payload = {user_id: user.id}
 			render json: {user: user, jwt: issue_token(payload)}
 		else
+			name_errors = ''
+			email_errors = ''
+			if user.errors.messages[:username][0]
+				name_errors = "Username #{user.errors.messages[:username][0]}"
+			elsif user.errors.messages[:email][0]
+				email_errors = "Email #{user.errors.messages[:email][0]}"
+			end
+			render json: {error: name_errors + " " + email_errors}
 		end
 	end
 

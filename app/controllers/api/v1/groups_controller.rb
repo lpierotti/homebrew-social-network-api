@@ -1,7 +1,8 @@
 class Api::V1::GroupsController < ApplicationController
 
 	def create
-		group = Group.create(name: params[:name], description: params[:description])
+		image = params[:image] || ''
+		group = Group.create(name: params[:name], description: params[:description], image: image)
 		members = params[:members].each do |name|
 			user = User.find_by(username: name)
 			UserGroup.create(user_id: user.id, group_id: group.id)
