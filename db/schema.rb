@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170929131600) do
+ActiveRecord::Schema.define(version: 20171010183058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,19 @@ ActiveRecord::Schema.define(version: 20170929131600) do
 
   create_table "chatrooms", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "start"
+    t.datetime "end"
+    t.string "number"
+    t.string "street"
+    t.string "state"
+    t.string "city"
+    t.float "lat"
+    t.float "lng"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -79,6 +92,11 @@ ActiveRecord::Schema.define(version: 20170929131600) do
     t.text "text"
     t.integer "rating"
     t.integer "recipe_id"
+    t.integer "user_id"
+  end
+
+  create_table "user_events", force: :cascade do |t|
+    t.integer "event_id"
     t.integer "user_id"
   end
 
