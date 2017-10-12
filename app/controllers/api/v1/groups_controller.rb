@@ -33,7 +33,6 @@ class Api::V1::GroupsController < ApplicationController
 				new_message
 			end
 		end
-		new_group[:events] = group.events
 		render json: {group: new_group}
 	end
 

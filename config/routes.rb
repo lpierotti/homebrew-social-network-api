@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   		post '/review/new', to: 'reviews#create'
   		get '/users', to: 'users#index'
   		post '/groups', to: 'groups#create'
+  		get '/group/:id/events', to: 'events#index'
   		get '/group/:id', to: 'groups#show'
   		post '/breweries', to: 'breweries#index'
   		resources :chatrooms do
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
 	        resources :messages, only: [:create]
 	    end
 	    post '/event/new', to: 'events#create'
+	    post '/event/:id/update', to: 'events#update'
   	end
   end
 
