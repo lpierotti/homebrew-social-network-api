@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20171010183058) do
     t.string "city"
     t.float "lat"
     t.float "lng"
+    t.integer "group_id"
   end
 
   create_table "follows", force: :cascade do |t|

@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 	        resource :chatroom_users, only: [:create, :destroy]
 	        resources :messages, only: [:create]
 	    end
+	    post '/event/new', to: 'events#create'
   	end
   end
 

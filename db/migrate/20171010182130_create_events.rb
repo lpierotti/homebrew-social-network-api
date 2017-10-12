@@ -11,6 +11,7 @@ class CreateEvents < ActiveRecord::Migration[5.1]
     	t.string :city
     	t.float :lat
     	t.float :lng
+    	t.integer :group_id
     end
   end
 end
