@@ -13,11 +13,21 @@ class Api::V1::EventsController < ApplicationController
 	def index 
 		group = Group.find_by(id: params[:id])
 		events = group.events
-		events_with_guests = events.map do |event|
-			new_event = event.attributes
-			new_event[:guests] = event.users
-			new_event
-		end
-		render json: {events: events_with_guests}
+		render json: {events: events}
+	end
+
+	def show 
+		event = Event.find_by(id: params[:id])
+		event_with_guests = event.attributes
+		event_with_guests[:guests] = event.users
+		render json: {event: event_with_guests}
+	end
+
+	def update
+		UserEvent.create(user_id:current_user.id, event_id: params[:id])
+		event = Event.find_by(id: params[:id])
+		new_event = event.attributes
+		new_event[:guests] = event.users
+		render json: {event: new_event}
 	end
 end

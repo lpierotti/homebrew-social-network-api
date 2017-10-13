@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 	    end
 	    post '/event/new', to: 'events#create'
 	    post '/event/:id/update', to: 'events#update'
+	    get 'event/:id', to 'events#show'
   	end
   end
 
