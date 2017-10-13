@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   		post '/review/new', to: 'reviews#create'
   		get '/users', to: 'users#index'
   		post '/groups', to: 'groups#create'
+  		get '/event/:id', to: 'events#show'
   		get '/group/:id/events', to: 'events#index'
   		get '/group/:id', to: 'groups#show'
   		post '/breweries', to: 'breweries#index'
@@ -27,7 +28,7 @@ Rails.application.routes.draw do
 	    end
 	    post '/event/new', to: 'events#create'
 	    post '/event/:id/update', to: 'events#update'
-	    get 'event/:id', to 'events#show'
+
   	end
   end
 
