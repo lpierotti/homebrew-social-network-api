@@ -27,8 +27,9 @@ Rails.application.routes.draw do
 	        resources :messages, only: [:create]
 	    end
 	    post '/event/new', to: 'events#create'
-	    post '/event/:id/update', to: 'events#update'
-
+	    post '/event/:id/addGuest', to: 'events#add_guest'
+	    post '/event/:id/removeGuest', to: 'events#remove_guest'
+	    post '/follow/delete', to: 'follows#destroy'
   	end
   end
 

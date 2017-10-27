@@ -21,4 +21,8 @@ class Api::V1::FollowsController < ApplicationController
 		render json: {followers: followers, followees: followees}
 	end
 
+	def destroy
+
+	end
+
 end
