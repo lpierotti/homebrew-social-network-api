@@ -3,9 +3,8 @@ class Api::V1::FollowsController < ApplicationController
 	def create
 		user = current_user
 		follow = Follow.find_or_create_by(follower_id: user.id, followee_id: params[:id])
-		followee = User.find_by(id: params[:id])
 		follower = User.find_by(id: current_user.id)
-		render json: {followee: followee, follower: follower}
+		render json: {follower: follower}
 	end
 
 	def index
@@ -22,7 +21,10 @@ class Api::V1::FollowsController < ApplicationController
 	end
 
 	def destroy
-
+		follow = Follow.find_by(followee_id: params[:id])
+		follower = User.find_by(id: current_user.id)
+		follow.destroy
+		render json: {follower: follower}
 	end
 
 end
