@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::API
 
 	def issue_token(payload)
-		JWT.encode(payload, "beerwinemead")
+		JWT.encode(payload, ENV['HOMEBREW_KEY'])
 	end
 
 	def decoded_token(token)
 
 		begin
-			JWT.decode(token, "beerwinemead")
+			JWT.decode(token, ENV['HOMEBREW_KEY'])
 		rescue JWT::DecodeError
 			''
 		end

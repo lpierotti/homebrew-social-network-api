@@ -21,6 +21,7 @@ gem 'puma', '~> 3.7'
  gem 'pg'
  gem 'faker'
  gem 'httparty', '~> 0.13.7'
+ gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

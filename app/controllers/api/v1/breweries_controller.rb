@@ -2,8 +2,7 @@ class Api::V1::BreweriesController < ApplicationController
 
 	def index
 
-		response = HTTParty.get("http://api.brewerydb.com/v2/search/geo/point?lat=#{params[:lat]}&lng=#{params[:lng]}&key=569868ef31103ae0d7db521990f1d8df", format: :plain)
-		# response = HTTParty.get("http://api.brewerydb.com/v2/search/geo/point?lat=40&lng=-74&key=569868ef31103ae0d7db521990f1d8df", format: :plain)
+		response = HTTParty.get("http://api.brewerydb.com/v2/search/geo/point?lat=#{params[:lat]}&lng=#{params[:lng]}&key=#{ENV['BREWERYDB_KEY']}", format: :plain)
 		json = JSON.parse(response, {symbolize_names: true})
 		open_breweries = json[:data].select {|brewery| brewery[:openToPublic] == 'Y'}
 		open_breweries = open_breweries.map do |brewery|
