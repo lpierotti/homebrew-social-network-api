@@ -24,7 +24,7 @@ module HomebrewSocialNetworkApi
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'https://brewforyou.herokuapp.com/'
+        origins 'brewforyou.herokuapp.com/'
         resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
     end
