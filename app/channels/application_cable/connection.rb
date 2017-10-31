@@ -5,7 +5,7 @@ module ApplicationCable
   	def decoded_token(token)
 
 		begin
-			JWT.decode(token, "beerwinemead")
+			JWT.decode(token, ENV['HOMEBREW_KEY'])
 		rescue JWT::DecodeError
 			''
 		end
